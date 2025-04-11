@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Ambev & Zé Delivery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Participe do quiz oficial da Ambev em parceria com o Zé Delivery e desbloqueie benefícios exclusivos.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="imagens/logonova.png" alt="Logo Ambev e Zé Delivery" class="logo">
+      <div style="font-size: 26px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold; color: #FFFFFF;">
+        Campanha Exclusiva Ambev & Zé 
+        <span style="display: inline-flex; align-items: center; gap: 4px;">
+          Delivery
+          <img src="imagens/images-removebg-preview.png" alt="Ícone verificado" style="width: 50px; height: 50px;" />
+        </span>
+    
+      </span>    
+      </div>           
+      <p class="sub">Responda 3 perguntas e ganhe de 13 até 15 fardos de cerveja gelada!</p>
+    </header>
+
+    <div style="text-align: center;">
+      <img src="imagens/packslogo.png" alt="Fardos de cerveja com gelo" style="width:80%;height:auto;display:inline-block;">
+    </div>
+    
+
+    <section id="q1" class="question active">
+      
+      <h2 style="font-size: 22px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #FFFFFF; margin: 19.92px 0;">
+        1. Qual sua cerveja favorita? 🍻
+      </h2>      
+      <div class="options">
+        <button onclick="next('q1','q2')">Heineken</button>
+        <button onclick="next('q1','q2')">Brahma</button>
+        <button onclick="next('q1','q2')">Budweiser</button>
+      </div>
+    </section>
+
+    <section id="q2" class="question hidden">
+      <h2>2. Com que frequência você usa o Zé Delivery?</h2>
+      <div class="options">
+        <button onclick="next('q2','q3')">Toda semana</button>
+        <button onclick="next('q2','q3')">De vez em quando</button>
+        <button onclick="next('q2','q3')">Nunca pedi</button>
+      </div>
+    </section>
+
+    <section id="q3" class="question hidden">
+      <h2>3. Gostaria de receber 84 long necks com frete grátis?</h2>
+      <div class="options">
+        <button onclick="finalStep()">É claro!</button>
+        <button onclick="finalStep()">Com certeza!</button>
+      </div>
+    </section>
+
+    <section id="final" class="question hidden">
+      
+
+<!-- BARRA DE PROGRESSO + REVELAÇÃO CONDICIONAL -->
+<div id="progress-wrapper" style="max-width: 500px; margin: 30px auto; text-align: center; font-family: Arial, sans-serif;">
+  <p id="progress-label" style="font-weight: bold; margin-bottom: 10px;">Verificando disponibilidade no estoque...</p>
+  <div style="background-color: #ddd; border-radius: 8px; overflow: hidden; height: 24px;">
+    <div id="progress-bar" style="height: 100%; width: 0%; background-color: #28a745; transition: width 0.4s;"></div>
+  </div>
+  <p id="progress-percent" style="margin-top: 10px; font-size: 14px;">0%</p>
+</div>
+
+<div id="result-content" style="display: none; text-align: center; font-family: Arial, sans-serif;">
+  <h2>Parabéns! Você foi aprovado ✅</h2>
+  <p style="font-size: 12px; font-family: Arial, sans-serif; color: #FFFFFF; margin: 20px 0;">
+    Clique no botão abaixo para desbloquear seu benefício.
+  </p>  
+  <br>
+  <a href="/zed07/roleta/index.html" class="btn" style="padding: 15px 25px; background-color: #ffcc00; border: none; color: #000; font-weight: bold; border-radius: 10px; text-decoration: none;">DESBLOQUEAR CUPOM</a>
+  <br>
+</div>
+
+<script>
+  let progress = 0;
+  const bar = document.getElementById("progress-bar");
+  const percentText = document.getElementById("progress-percent");
+  const label = document.getElementById("progress-label");
+  const resultContent = document.getElementById("result-content");
+
+  const interval = setInterval(() => {
+    if (progress >= 100) {
+      clearInterval(interval);
+      label.textContent = "Disponibilidade confirmada!";
+      resultContent.style.display = "block";
+    } else {
+      progress += Math.floor(Math.random() * 5) + 1;
+      if (progress > 100) progress = 100;
+      bar.style.width = progress + "%";
+      percentText.textContent = progress + "%";
+    }
+  }, 350);
+</script>
+
+    
+    <footer>
+      <p class="disclaimer">*Campanha promocional por tempo limitado. Sujeita à disponibilidade regional.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
